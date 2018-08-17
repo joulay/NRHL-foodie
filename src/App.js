@@ -10,9 +10,10 @@ class App extends Component {
     }
   }
   componentWillMount () {
-    fetch('http://whatever/profile').then(() => {
-      // This in the other hand will cause additional rerender,
-      // since fetch is async and state is set after request completes.
+    fetch('http://whatever/profile')
+      .then((results) => {
+        return results.json();
+      
       this.setState({ name: 'Andrej '});
     })
   }
@@ -25,7 +26,7 @@ class App extends Component {
           {/* <h3>L U N C H</h3> */}
         </header>
         <p className="App-intro">
-          <button>
+          <button onClick={}>
               WHAT'S FOR LUNCH
           </button>
         </p>
