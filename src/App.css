@@ -19,10 +19,20 @@
 }
 
 button {
-  padding: 20px;
-  border-radius: 5%;
-  font-size: 20px;
-  background-color: red;
-  border: none;
-  color: white;
+  margin-top: 60px;
+  display: inline-block;
+  background: #D32F2F;
+  color: #fff;
+  font-size: 16px;
+  text-transform: uppercase;
+  padding: 20px 30px;
+  border-radius: 5px;
+  box-shadow: 0px 15px 50px -10px rgba(0,0,0,0.4);
+  cursor: pointer;
+  transition: all ease-in-out 300ms;
+}
+
+button:hover {
+  box-shadow: 0px 37px 20px -20px rgba(0,0,0,0.2);
+  transform: translate(0px, -10px) scale(1);
 }
