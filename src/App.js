@@ -25,7 +25,7 @@ fetchData = () => {
     return results.json()
   }) 
   .then((data) => {
-    console.log(data)                
+    console.log(data) 
   })
   .catch((error) => {
     console.log(error, "catch the hoop")
