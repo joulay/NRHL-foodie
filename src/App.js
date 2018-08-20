@@ -4,10 +4,25 @@ import { fetchSuggestions } from './actions/suggestions';
 import './App.css';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: '1'
+    };
+
+  }
+
+  handlePrice(e) {
+    console.log(e.target.value);
+  }
+
   handleClick() {
     console.log('clicking!!!');
     this.props.dispatch(fetchSuggestions());
   }
+
+
+
   render() {
     console.log(this.props);
     if (!this.props.suggestions.businesses) {
@@ -20,6 +35,12 @@ class App extends Component {
             
           </header>
           <p className="App-intro">
+          <select value={this.state.value} onChange={this.handlePrice}>
+            <option value="1">$</option>
+            <option value="2">$$</option>
+            <option value="3">$$$</option>
+            <option value="4">$$$$</option>
+          </select>
             <button onClick={() => this.handleClick()}>
                 WHAT'S FOR LUNCH
             </button>
@@ -39,6 +60,11 @@ class App extends Component {
             
           </header>
           <p className="App-intro">
+          <select value={this.state.value}>
+            <option selected value="1">$</option>
+            <option value="2">$$</option>
+            <option value="3">$$$</option>
+          </select>
             <button onClick={() => this.handleClick()}>
                 WHAT'S FOR LUNCH
             </button>
