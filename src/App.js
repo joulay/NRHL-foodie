@@ -38,17 +38,26 @@ class App extends Component {
             <h1 className="App-title">N O R D S T R O M  R A C K | H A U T E L O O K</h1>
             
           </header>
-          <p className="App-intro">
-          <select value={this.state.value} onChange={(e)=>this.handlePrice(e)}>
-            <option value="1">$</option>
-            <option value="2">$$</option>
-            <option value="3">$$$</option>
-            <option value="4">$$$$</option>
-          </select>
-            <button onClick={() => this.handleClick()}>
-                WHAT'S FOR LUNCH
-            </button>
-          </p>
+          <div className="content">
+
+            <div className="button">
+              <button onClick={() => this.handleClick()}>
+                  WHAT'S FOR LUNCH
+              </button>
+            </div>
+
+            <div className="select">
+              <select value={this.state.value} onChange={(e)=> {
+                e.stopPropagation();
+                this.handlePrice(e)}}>
+                <option selected value="1">$</option>
+                <option value="2">$$</option>
+                <option value="3">$$$</option>
+                <option value="4">$$$$</option>
+              </select>
+            </div>
+
+          </div>
         </div>
       );
     }
@@ -64,18 +73,22 @@ class App extends Component {
             
           </header>
           <div className="content">
-            <select value={this.state.value} onChange={(e)=> {
-              e.stopPropagation();
-              this.handlePrice(e)}}>
-              <option selected value="1">$</option>
-              <option value="2">$$</option>
-              <option value="3">$$$</option>
-              <option value="4">$$$$</option>
-            </select>
+            <div className="button">
+                <button onClick={() => this.handleClick()}>
+                    WHAT'S FOR LUNCH
+                </button>
+              </div>
 
-            <button onClick={() => this.handleClick()}>
-                WHAT'S FOR LUNCH
-            </button>
+              <div className="select">
+                <select value={this.state.value} onChange={(e)=> {
+                  e.stopPropagation();
+                  this.handlePrice(e)}}>
+                  <option selected value="1">$</option>
+                  <option value="2">$$</option>
+                  <option value="3">$$$</option>
+                  <option value="4">$$$$</option>
+                </select>
+              </div>
           </div>
           <div className="info">
             <div className="name">{randomSuggestion.name}</div>

@@ -39,6 +39,7 @@ button:hover {
 
 .content {
   display: block;
+
 }
 
 .info {
@@ -52,4 +53,8 @@ button:hover {
 
 .food-image {
   max-width: 40%;
+}
+
+.select {
+  margin-top: 40px;
 }
