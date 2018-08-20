@@ -7,30 +7,35 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: '1'
+      value: '1',
+      click: false
     };
 
   }
 
   handlePrice(e) {
-    console.log(e.target.value, 'target');
+    console.log(e.target.value, 'target!!!');
     this.setState({
-      value: e.target.value
+      value: e.target.value,
+      click: false
     })
   }
 
   handleClick() {
     console.log('clicking!!!');
-
+    this.setState({
+      click: true
+    });
     this.props.dispatch(fetchSuggestions(this.state.value));
   }
 
 
 
   render() {
-    console.log(this.props);
+    let dataToRender;
+    console.log(this.state);
+    //console.log(this.props);
     if (!this.props.suggestions.businesses) {
-      console.log('return when button is NOT clicked');
       return (
         <div className="App">
           <header className="App-header">
@@ -53,9 +58,18 @@ class App extends Component {
       );
     }
     if (this.props.suggestions.businesses) {
-      console.log('return random when CLICKED');
       let randomSuggestion = this.props.suggestions.businesses[Math.floor(Math.random()*this.props.suggestions.businesses.length)];
-      console.log(randomSuggestion);
+      // console.log('changing randomSuggestion even onChange', randomSuggestion); 
+      let switchData = randomSuggestion; 
+      if (this.state.click === false) {
+        console.log('render initial suggestion');
+        dataToRender = randomSuggestion;
+        console.log('DATA', dataToRender.name);
+      } else {
+        console.log('render new suggestion based on click');
+      }
+      
+      
       return (
         <div className="App">
           <header className="App-header">
