@@ -55,7 +55,7 @@ class App extends Component {
     if (this.props.suggestions.businesses) {
       console.log('return random when CLICKED');
       let randomSuggestion = this.props.suggestions.businesses[Math.floor(Math.random()*this.props.suggestions.businesses.length)];
-      console.log(randomSuggestion);
+      console.log(randomSuggestion, 'heaaa');
       return (
         <div className="App">
           <header className="App-header">
@@ -63,21 +63,25 @@ class App extends Component {
             <h1 className="App-title">N O R D S T R O M  R A C K | H A U T E L O O K</h1>
             
           </header>
-          <p className="App-intro">
-          <select value={this.state.value} onChange={(e)=> {
-            e.stopPropagation();
-            this.handlePrice(e)}}>
-            <option selected value="1">$</option>
-            <option value="2">$$</option>
-            <option value="3">$$$</option>
-            <option value="4">$$$$</option>
-          </select>
+          <div className="content">
+            <select value={this.state.value} onChange={(e)=> {
+              e.stopPropagation();
+              this.handlePrice(e)}}>
+              <option selected value="1">$</option>
+              <option value="2">$$</option>
+              <option value="3">$$$</option>
+              <option value="4">$$$$</option>
+            </select>
+
             <button onClick={() => this.handleClick()}>
                 WHAT'S FOR LUNCH
             </button>
-          </p>
-          <div>
-            {randomSuggestion.name}
+          </div>
+          <div className="info">
+            <div className="name">{randomSuggestion.name}</div>
+            {randomSuggestion.location.address1}
+          </div>  
+          <div className="pic">
             <img className="food-image" src={randomSuggestion.image_url} alt="random-suggestion" />
           </div>
         </div>

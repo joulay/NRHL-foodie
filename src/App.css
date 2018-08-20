@@ -37,6 +37,18 @@ button:hover {
   transform: translate(0px, -10px) scale(1);
 }
 
+.content {
+  display: block;
+}
+
+.info {
+  margin: 10px;
+}
+
+.name {
+  font-weight: 800;
+  margin-top: 20px;
+}
 
 .food-image {
   max-width: 40%;
