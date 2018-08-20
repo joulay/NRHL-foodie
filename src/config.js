@@ -1,1 +1,1 @@
-export const REACT_APP_YELP_KEY = process.env.REACT_APP_YELP_KEY || 'CgL_HUr4TRfkf4bGCREMiBHX2nIbB2GLf42mL5y4dgo2-6yZilfti49U6LsZDNyH5hiDhCzFr0k4aZX-GbBPDeatCtAP1s3TnnSYD7baP-F0tCAae-M5lceK2T52W3Yx'
+export const REACT_APP_YELP_KEY = process.env.REACT_APP_YELP_KEY 

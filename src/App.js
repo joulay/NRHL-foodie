@@ -1,53 +1,61 @@
 import React, { Component } from 'react';
-import {REACT_APP_YELP_KEY } from './config'
+import { connect } from 'react-redux';
+import { fetchSuggestions } from './actions/suggestions';
 import './App.css';
 
 class App extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {suggestion: []}
-
-}
-
-
-
-
-fetchData = () => {
-  console.log('this is our',REACT_APP_YELP_KEY)
-  fetch("https://fast-beach-47884.herokuapp.com/https://api.yelp.com/v3/businesses/search?categories=food&sort_by=rating&limit=10&latitude=34.048203&longitude=-118.258949&radius=805", {
-    method: "GET",
-    dataType: "JSON",
-    headers: {
-      Authorization: `Bearer ${REACT_APP_YELP_KEY}`
-    }
-  })
-  .then((results) => {
-    return results.json()
-  }) 
-  .then((data) => {
-    console.log(data)                
-  })
-  .catch((error) => {
-    console.log(error, "catch the hoop")
-  })
-}
-
+  handleClick() {
+    console.log('clicking!!!');
+    this.props.dispatch(fetchSuggestions());
+  }
   render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-         
-          <h1 className="App-title">N O R D S T R O M  R A C K | H A U T E L O O K</h1>
-          
-        </header>
-        <p className="App-intro">
-          <button onClick={() => this.fetchData}>
-              WHAT'S FOR LUNCH
-          </button>
-        </p>
-      </div>
-    );
+    console.log(this.props);
+    if (!this.props.suggestions.businesses) {
+      console.log('return when button is NOT clicked');
+      return (
+        <div className="App">
+          <header className="App-header">
+           
+            <h1 className="App-title">N O R D S T R O M  R A C K | H A U T E L O O K</h1>
+            
+          </header>
+          <p className="App-intro">
+            <button onClick={() => this.handleClick()}>
+                WHAT'S FOR LUNCH
+            </button>
+          </p>
+        </div>
+      );
+    }
+    if (this.props.suggestions.businesses) {
+      console.log('return random when CLICKED');
+      let randomSuggestion = this.props.suggestions.businesses[Math.floor(Math.random()*this.props.suggestions.businesses.length)];
+      console.log(randomSuggestion);
+      return (
+        <div className="App">
+          <header className="App-header">
+           
+            <h1 className="App-title">N O R D S T R O M  R A C K | H A U T E L O O K</h1>
+            
+          </header>
+          <p className="App-intro">
+            <button onClick={() => this.handleClick()}>
+                WHAT'S FOR LUNCH
+            </button>
+          </p>
+          <div>
+            {randomSuggestion.name}
+            <img className="food-image" src={randomSuggestion.image_url} alt="random-suggestion" />
+          </div>
+        </div>
+      );
+    }
   }
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+  suggestions: state.suggestions
+});
+
+export default connect(mapStateToProps)(App);
+
