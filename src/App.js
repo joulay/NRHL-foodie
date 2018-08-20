@@ -13,12 +13,16 @@ class App extends Component {
   }
 
   handlePrice(e) {
-    console.log(e.target.value);
+    console.log(e.target.value, 'target');
+    this.setState({
+      value: e.target.value
+    })
   }
 
   handleClick() {
     console.log('clicking!!!');
-    this.props.dispatch(fetchSuggestions());
+
+    this.props.dispatch(fetchSuggestions(this.state.value));
   }
 
 
@@ -35,7 +39,7 @@ class App extends Component {
             
           </header>
           <p className="App-intro">
-          <select value={this.state.value} onChange={this.handlePrice}>
+          <select value={this.state.value} onChange={(e)=>this.handlePrice(e)}>
             <option value="1">$</option>
             <option value="2">$$</option>
             <option value="3">$$$</option>
@@ -60,10 +64,13 @@ class App extends Component {
             
           </header>
           <p className="App-intro">
-          <select value={this.state.value}>
+          <select value={this.state.value} onChange={(e)=> {
+            e.stopPropagation();
+            this.handlePrice(e)}}>
             <option selected value="1">$</option>
             <option value="2">$$</option>
             <option value="3">$$$</option>
+            <option value="4">$$$$</option>
           </select>
             <button onClick={() => this.handleClick()}>
                 WHAT'S FOR LUNCH
