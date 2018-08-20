@@ -41,7 +41,7 @@ fetchData = () => {
           
         </header>
         <p className="App-intro">
-          <button onClick={this.fetchData}>
+          <button onClick={() => this.fetchData}>
               WHAT'S FOR LUNCH
           </button>
         </p>
