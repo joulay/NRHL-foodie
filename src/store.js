@@ -4,5 +4,6 @@ import suggestionsReducer from './reducers/suggestions';
 
 export default createStore(
     suggestionsReducer,
+    window.REDUX_DEVTOOLS_EXTENSION && window.REDUX_DEVTOOLS_EXTENSION(),
     applyMiddleware(thunk)
 );
