@@ -7,10 +7,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: '1',
-      click: false,
-      displayName: '',
-      dispayImageUrl: ''
+      value: '1'
     };
   }
 
@@ -21,26 +18,14 @@ class App extends Component {
   }
 
   handleClick() {
-    console.log('clicking!!!');
     this.props.dispatch(fetchSuggestions(this.state.value));
-    // if (this.props.suggestions.businesses) {
-    //   let randomSuggestion = this.props.suggestions.businesses[Math.floor(Math.random()*this.props.suggestions.businesses.length)];
-    //   console.log('changing randomSuggestion even onChange', randomSuggestion.name); 
-    //   this.setState({
-    //     displayName: randomSuggestion.name,
-    //     dispayImageUrl: randomSuggestion.image_url
-    //   });
-    // }
   }
 
   render() {
-    console.log(this.state);
-    console.log(this.props);
     let name = this.props.suggestions.name;
     let image = this.props.suggestions.image_url;
     let price = this.props.suggestions.price;
     if (this.props.suggestions.length === 0) {
-      console.log('empty');
       return (
         <div className="App">
           <header className="App-header">
@@ -63,7 +48,6 @@ class App extends Component {
       );
     }
     if (this.props.suggestions.length !== 0) {
-      console.log('not empty');
       return (
         <div className="App">
           <header className="App-header">
