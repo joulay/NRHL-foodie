@@ -34,7 +34,6 @@ class App extends Component {
     // console.log(this.props); 
     let name = this.props.suggestions.name;
     let image = this.props.suggestions.image_url;
-    let price = this.props.suggestions.price;
     let address = this.props.suggestions;
     if (this.props.suggestions.length === 0) {
       return (
@@ -108,9 +107,10 @@ class App extends Component {
                 </select>
               </div>
           </div>
+          <div className="info">
           {name}
           <img className="food-image" src={image} alt="random-suggestion" />
-
+          </div>
             {/* <div className="info">
               <div className="name">{name}</div>
               {address}

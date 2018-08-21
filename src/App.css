@@ -48,6 +48,8 @@ button:hover {
 
 .info {
   margin: 10px;
+  display: flex;
+  flex-direction: column;
 }
 
 .name {
@@ -57,8 +59,10 @@ button:hover {
 
 .food-image {
   max-width: 40%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .select {
-  margin-top: 40px;
+  margin: 30px;
 }
