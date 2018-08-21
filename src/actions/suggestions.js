@@ -36,7 +36,7 @@ export const fetchSuggestions = (price) => dispatch => {
     .then((results) => results.json()) 
     .then((data) => {
       let randomSuggestion = data.businesses[Math.floor(Math.random()*data.businesses.length)];
-      console.log(randomSuggestion);
+      console.log('randomly selects one from returned data', randomSuggestion);
       dispatch(fetchSuggestionsSuccess(randomSuggestion));
     })
     .catch((error) => {
