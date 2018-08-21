@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import Input from './Input';
 import { fetchSuggestions } from './actions/suggestions';
 import './App.css';
 
@@ -30,11 +29,8 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state);
-    // console.log(this.props); 
     let name = this.props.suggestions.name;
     let image = this.props.suggestions.image_url;
-    let address = this.props.suggestions;
     if (this.props.suggestions.length === 0) {
       return (
         <div className="App">
@@ -44,14 +40,7 @@ class App extends Component {
             
           </header>
           <div className="content">
-              <form>
-                <label htmlFor="search-input">Category Search</label>
-                <input 
-                type="text" 
-                name="searchInput"
-                onChange={(e) => this.handleInput(e)}>
-                </input>
-            </form>
+
             <div className="button">
               <button onClick={() => this.handleClick()}>
                   WHAT'S FOR LUNCH
@@ -59,10 +48,18 @@ class App extends Component {
             </div>
     
             <div className="select">
+            <form>
+                <input 
+                type="text" 
+                name="searchInput"
+                placeholder="Category"
+                onChange={(e) => this.handleInput(e)}>
+                </input>
+              </form>
               <select value={this.state.value} onChange={(e)=> {
                 e.stopPropagation();
                 this.handlePrice(e)}}>
-                <option selected value="1">$</option>
+                <option defaultValue="1">$</option>
                 <option value="2">$$</option>
                 <option value="3">$$$</option>
                 <option value="4">$$$$</option>
@@ -82,14 +79,7 @@ class App extends Component {
           </header>
 
           <div className="content">
-          <form>
-              <label htmlFor="search-input">Category Search</label>
-              <input 
-              type="text" 
-              name="searchInput"
-              onChange={(e) => this.handleInput(e)}>
-              </input>
-          </form>
+
             <div className="button">
                 <button onClick={() => this.handleClick()}>
                     WHAT'S FOR LUNCH
@@ -97,10 +87,18 @@ class App extends Component {
               </div>
 
               <div className="select">
+                <form>
+                  <input 
+                  type="text" 
+                  name="searchInput"
+                  placeholder="Category"
+                  onChange={(e) => this.handleInput(e)}>
+                  </input>
+                </form>
                 <select value={this.state.value} onChange={(e)=> {
                   e.stopPropagation();
                   this.handlePrice(e)}}>
-                  <option selected value="1">$</option>
+                  <option defaultValue="1">$</option>
                   <option value="2">$$</option>
                   <option value="3">$$$</option>
                   <option value="4">$$$$</option>

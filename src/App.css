@@ -65,4 +65,7 @@ button:hover {
 
 .select {
   margin: 30px;
+  display: flex;
+
 }
+
