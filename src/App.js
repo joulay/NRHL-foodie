@@ -22,21 +22,24 @@ class App extends Component {
 
   handleClick() {
     console.log('clicking!!!');
-    if (this.props.suggestions.businesses) {
-      let randomSuggestion = this.props.suggestions.businesses[Math.floor(Math.random()*this.props.suggestions.businesses.length)];
-      console.log('changing randomSuggestion even onChange', randomSuggestion.name); 
-      this.setState({
-        displayName: randomSuggestion.name,
-        dispayImageUrl: randomSuggestion.image_url
-      });
-    }
-    console.log(this.props.suggestions.businesses);
+    this.props.dispatch(fetchSuggestions(this.state.value));
+    // if (this.props.suggestions.businesses) {
+    //   let randomSuggestion = this.props.suggestions.businesses[Math.floor(Math.random()*this.props.suggestions.businesses.length)];
+    //   console.log('changing randomSuggestion even onChange', randomSuggestion.name); 
+    //   this.setState({
+    //     displayName: randomSuggestion.name,
+    //     dispayImageUrl: randomSuggestion.image_url
+    //   });
+    // }
   }
 
   render() {
-    // console.log(this.state);
-    // console.log(this.props);
-    if (!this.props.suggestions.businesses) {
+    console.log(this.state);
+    console.log(this.props);
+    let name = this.props.suggestions.name;
+    let image = this.props.suggestions.image_url;
+    if (this.props.suggestions.length === 0) {
+      console.log('empty');
       return (
         <div className="App">
           <header className="App-header">
@@ -51,17 +54,15 @@ class App extends Component {
             <option value="3">$$$</option>
             <option value="4">$$$$</option>
           </select>
-            <button onClick={() => {
-              this.props.dispatch(fetchSuggestions(this.state.value));
-              this.handleClick();
-              }}>
+            <button onClick={() => this.handleClick()}>
                 WHAT'S FOR LUNCH
             </button>
           </p>
         </div>
       );
     }
-    if (this.props.suggestions.businesses) {
+    if (this.props.suggestions.length !== 0) {
+      console.log('not empty');
       return (
         <div className="App">
           <header className="App-header">
@@ -76,16 +77,13 @@ class App extends Component {
             <option value="3">$$$</option>
             <option value="4">$$$$</option>
           </select>
-          <button onClick={() => {
-              this.props.dispatch(fetchSuggestions(this.state.value));
-              this.handleClick();
-              }}>
+          <button onClick={() => this.handleClick()}>
                 WHAT'S FOR LUNCH
             </button>
           </p>
           <div>
-            {this.state.displayName}
-            <img className="food-image" src={this.state.dispayImageUrl} alt="random-suggestion" />
+            {name}
+            <img className="food-image" src={image} alt="random-suggestion" />
           </div>
         </div>
       );

@@ -35,8 +35,9 @@ export const fetchSuggestions = (price) => dispatch => {
     })
     .then((results) => results.json()) 
     .then((data) => {
-      console.log(data);
-      dispatch(fetchSuggestionsSuccess(data));
+      let randomSuggestion = data.businesses[Math.floor(Math.random()*data.businesses.length)];
+      console.log(randomSuggestion);
+      dispatch(fetchSuggestionsSuccess(randomSuggestion));
     })
     .catch((error) => {
       console.log(error, "catch the hoop");
