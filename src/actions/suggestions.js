@@ -24,7 +24,7 @@ export const fetchSuggestions = (price) => dispatch => {
     dispatch(fetchSuggestionsRequest());
     //console.log('this is our', REACT_APP_YELP_KEY);
     console.log(price)
-    fetch(`https://fast-beach-47884.herokuapp.com/https://api.yelp.com/v3/businesses/search?categories=food&sort_by=rating&limit=10&latitude=34.048203&longitude=-118.258949&radius=805&price=${price}`, {
+    fetch(`https://fast-beach-47884.herokuapp.com/https://api.yelp.com/v3/businesses/search?categories=food&sort_by=rating&limit=50&latitude=34.048203&longitude=-118.258949&radius=805&price=${price}`, {
       method: "GET",
       dataType: "JSON",
       headers: {

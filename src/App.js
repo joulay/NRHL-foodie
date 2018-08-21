@@ -8,31 +8,36 @@ class App extends Component {
     super(props);
     this.state = {
       value: '1',
-      click: false
+      click: false,
+      displayName: '',
+      dispayImageUrl: ''
     };
-
   }
 
   handlePrice(e) {
-    console.log(e.target.value, 'target!!!');
     this.setState({
       value: e.target.value,
-      click: false
+      click: false,
     })
   }
 
   handleClick() {
     console.log('clicking!!!');
-    this.setState({
-      click: true
-    });
+    // this.setState({
+    //   click: true
+    // });
     this.props.dispatch(fetchSuggestions(this.state.value));
+    if (this.props.suggestions.businesses) {
+      let randomSuggestion = this.props.suggestions.businesses[Math.floor(Math.random()*this.props.suggestions.businesses.length)];
+      console.log('changing randomSuggestion even onChange', randomSuggestion.name); 
+      this.setState({
+        displayName: randomSuggestion.name,
+        dispayImageUrl: randomSuggestion.image_url
+      })
+    }
   }
 
-
-
   render() {
-    let dataToRender;
     console.log(this.state);
     //console.log(this.props);
     if (!this.props.suggestions.businesses) {
@@ -58,18 +63,6 @@ class App extends Component {
       );
     }
     if (this.props.suggestions.businesses) {
-      let randomSuggestion = this.props.suggestions.businesses[Math.floor(Math.random()*this.props.suggestions.businesses.length)];
-      // console.log('changing randomSuggestion even onChange', randomSuggestion); 
-      let switchData = randomSuggestion; 
-      if (this.state.click === false) {
-        console.log('render initial suggestion');
-        dataToRender = randomSuggestion;
-        console.log('DATA', dataToRender.name);
-      } else {
-        console.log('render new suggestion based on click');
-      }
-      
-      
       return (
         <div className="App">
           <header className="App-header">
@@ -79,7 +72,7 @@ class App extends Component {
           </header>
           <p className="App-intro">
           <select value={this.state.value} onChange={(e)=> {
-            e.stopPropagation();
+            e.preventDefault();
             this.handlePrice(e)}}>
             <option selected value="1">$</option>
             <option value="2">$$</option>
@@ -91,8 +84,8 @@ class App extends Component {
             </button>
           </p>
           <div>
-            {randomSuggestion.name}
-            <img className="food-image" src={randomSuggestion.image_url} alt="random-suggestion" />
+            {this.state.displayName}
+            <img className="food-image" src={this.state.dispayImageUrl} alt="random-suggestion" />
           </div>
         </div>
       );
