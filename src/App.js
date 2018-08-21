@@ -45,7 +45,7 @@ class App extends Component {
                   WHAT'S FOR LUNCH
               </button>
             </div>
-
+    
             <div className="select">
               <select value={this.state.value} onChange={(e)=> {
                 e.stopPropagation();
