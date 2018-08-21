@@ -16,30 +16,26 @@ class App extends Component {
 
   handlePrice(e) {
     this.setState({
-      value: e.target.value,
-      click: false,
+      value: e.target.value
     })
   }
 
   handleClick() {
     console.log('clicking!!!');
-    // this.setState({
-    //   click: true
-    // });
-    this.props.dispatch(fetchSuggestions(this.state.value));
     if (this.props.suggestions.businesses) {
       let randomSuggestion = this.props.suggestions.businesses[Math.floor(Math.random()*this.props.suggestions.businesses.length)];
       console.log('changing randomSuggestion even onChange', randomSuggestion.name); 
       this.setState({
         displayName: randomSuggestion.name,
         dispayImageUrl: randomSuggestion.image_url
-      })
+      });
     }
+    console.log(this.props.suggestions.businesses);
   }
 
   render() {
-    console.log(this.state);
-    //console.log(this.props);
+    // console.log(this.state);
+    // console.log(this.props);
     if (!this.props.suggestions.businesses) {
       return (
         <div className="App">
@@ -55,7 +51,10 @@ class App extends Component {
             <option value="3">$$$</option>
             <option value="4">$$$$</option>
           </select>
-            <button onClick={() => this.handleClick()}>
+            <button onClick={() => {
+              this.props.dispatch(fetchSuggestions(this.state.value));
+              this.handleClick();
+              }}>
                 WHAT'S FOR LUNCH
             </button>
           </p>
@@ -71,15 +70,16 @@ class App extends Component {
             
           </header>
           <p className="App-intro">
-          <select value={this.state.value} onChange={(e)=> {
-            e.preventDefault();
-            this.handlePrice(e)}}>
+          <select value={this.state.value} onChange={(e)=> this.handlePrice(e)}>
             <option selected value="1">$</option>
             <option value="2">$$</option>
             <option value="3">$$$</option>
             <option value="4">$$$$</option>
           </select>
-            <button onClick={() => this.handleClick()}>
+          <button onClick={() => {
+              this.props.dispatch(fetchSuggestions(this.state.value));
+              this.handleClick();
+              }}>
                 WHAT'S FOR LUNCH
             </button>
           </p>

@@ -33,9 +33,7 @@ export const fetchSuggestions = (price) => dispatch => {
         Authorization: `Bearer ${REACT_APP_YELP_KEY}`
       }
     })
-    .then((results) => {
-      return results.json();
-    }) 
+    .then((results) => results.json()) 
     .then((data) => {
       console.log(data);
       dispatch(fetchSuggestionsSuccess(data));
