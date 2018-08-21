@@ -113,7 +113,7 @@ class App extends Component {
               <div className="name">{name}</div>
               {address}
             </div>  
-            <div className="pic">
+            <div className="pic"></div>
             <img className="food-image" src={image} alt="random-suggestion" />
           </div> */}
         </div>
